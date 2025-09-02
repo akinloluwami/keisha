@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../cloud-api/dist",
-    "rootDir": "../cloud-api/src"
-  },
-  "include": ["../cloud-api/src/**/*"]
-}

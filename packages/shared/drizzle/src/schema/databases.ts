@@ -1,4 +1,11 @@
-import { pgTable, uuid, varchar, timestamp, bigint } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  uuid,
+  varchar,
+  timestamp,
+  bigint,
+  boolean,
+} from "drizzle-orm/pg-core";
 import { user } from "./auth";
 
 export const databases = pgTable("databases", {
@@ -11,6 +18,9 @@ export const databases = pgTable("databases", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   version: bigint("version", { mode: "number" }).default(0),
+  // Blocking flags
+  blockReads: boolean("block_reads").notNull().default(false),
+  blockWrites: boolean("block_writes").notNull().default(false),
 });
 
 // Types

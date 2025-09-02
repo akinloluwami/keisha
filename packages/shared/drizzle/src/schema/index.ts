@@ -1,2 +1,6 @@
 // Export Better Auth generated schema
 export * from "./auth";
+
+// Export application tables
+export * from "./databases";
+export * from "./db-tokens";

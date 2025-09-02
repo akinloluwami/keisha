@@ -9,6 +9,7 @@
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@keishadb/drizzle": "file:../../packages/shared/drizzle",
     "@tanstack/react-router": "^1.131.31",
     "@tanstack/react-router-devtools": "^1.131.31",
     "@tanstack/react-start": "^1.131.31",

@@ -1,0 +1,9 @@
+{
+  "name": "keisha-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "packages/sdk/ts"
+  ]
+}

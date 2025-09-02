@@ -1,0 +1,9 @@
+# Migrations
+
+This directory will contain generated migration files when you run:
+
+```bash
+npm run generate
+```
+
+Migrations are automatically generated based on changes to your schema files.

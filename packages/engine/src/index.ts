@@ -18,7 +18,7 @@ export class KeishaEngine {
   }
 
   async set(key: string, value: Buffer | string): Promise<void> {
-    const buf = typeof value === "string" ? Buffer.from(value) : value;
+    const buf = typeof value === "string" ? Buffer.from(value, "utf-8") : value;
     await this.storage.set(key, buf);
   }
 

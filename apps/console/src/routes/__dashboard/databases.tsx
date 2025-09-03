@@ -1,14 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useDatabaseStore, type Database } from "~/store/database-store";
 
 export const Route = createFileRoute("/__dashboard/databases")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const { databases } = useDatabaseStore();
+
   const stats = [
     {
       label: "Databases",
-      value: "12",
+      value: databases.length.toString(),
     },
     {
       label: "Operations",
@@ -17,44 +20,6 @@ function RouteComponent() {
     {
       label: "Storage",
       value: "2.4 GB",
-    },
-  ];
-
-  const databases = [
-    {
-      id: 1,
-      name: "user-analytics",
-      seed: "UserAnalytics",
-      size: "324 MB",
-      sparkline: [12, 19, 3, 5, 2, 3, 20, 14, 7, 18, 9, 15],
-    },
-    {
-      id: 2,
-      name: "product-catalog",
-      seed: "ProductCatalog",
-      size: "156 MB",
-      sparkline: [8, 15, 12, 25, 18, 22, 19, 24, 16, 20, 13, 27],
-    },
-    {
-      id: 3,
-      name: "order-history",
-      seed: "OrderHistory",
-      size: "892 MB",
-      sparkline: [5, 8, 15, 12, 25, 18, 22, 19, 14, 16, 10, 8],
-    },
-    {
-      id: 4,
-      name: "customer-support",
-      seed: "CustomerSupport",
-      size: "67 MB",
-      sparkline: [3, 7, 4, 9, 6, 11, 8, 12, 5, 14, 7, 10],
-    },
-    {
-      id: 5,
-      name: "inventory-management",
-      seed: "InventoryManagement",
-      size: "234 MB",
-      sparkline: [15, 18, 22, 19, 24, 16, 20, 13, 27, 21, 25, 18],
     },
   ];
   const Sparkline = ({ data }: { data: number[] }) => {
@@ -123,7 +88,7 @@ function RouteComponent() {
           <h3 className=" text-gray-900">Databases</h3>
         </div>
         <div className="divide-y divide-gray-200">
-          {databases.map((database) => (
+          {databases.map((database: Database) => (
             <div
               key={database.id}
               className="p-6 flex items-center justify-between hover:bg-gray-50"

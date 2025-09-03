@@ -12,7 +12,13 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as _dashboardRouteImport } from './routes/__dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as _dashboardSettingsRouteImport } from './routes/__dashboard/settings'
+import { Route as _dashboardLogsRouteImport } from './routes/__dashboard/logs'
+import { Route as _dashboardDatabasesRouteImport } from './routes/__dashboard/databases'
+import { Route as _dashboardAnalyticsRouteImport } from './routes/__dashboard/analytics'
+import { Route as _dashboardDatabasesDbIdRouteImport } from './routes/__dashboard/databases/$dbId'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/$'
 
 const rootServerRouteImport = createServerRootRoute()
@@ -22,10 +28,39 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const _dashboardRoute = _dashboardRouteImport.update({
+  id: '/__dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const _dashboardSettingsRoute = _dashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => _dashboardRoute,
+} as any)
+const _dashboardLogsRoute = _dashboardLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => _dashboardRoute,
+} as any)
+const _dashboardDatabasesRoute = _dashboardDatabasesRouteImport.update({
+  id: '/databases',
+  path: '/databases',
+  getParentRoute: () => _dashboardRoute,
+} as any)
+const _dashboardAnalyticsRoute = _dashboardAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => _dashboardRoute,
+} as any)
+const _dashboardDatabasesDbIdRoute = _dashboardDatabasesDbIdRouteImport.update({
+  id: '/$dbId',
+  path: '/$dbId',
+  getParentRoute: () => _dashboardDatabasesRoute,
 } as any)
 const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
   id: '/api/auth/$',
@@ -36,26 +71,66 @@ const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/analytics': typeof _dashboardAnalyticsRoute
+  '/databases': typeof _dashboardDatabasesRouteWithChildren
+  '/logs': typeof _dashboardLogsRoute
+  '/settings': typeof _dashboardSettingsRoute
+  '/databases/$dbId': typeof _dashboardDatabasesDbIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/analytics': typeof _dashboardAnalyticsRoute
+  '/databases': typeof _dashboardDatabasesRouteWithChildren
+  '/logs': typeof _dashboardLogsRoute
+  '/settings': typeof _dashboardSettingsRoute
+  '/databases/$dbId': typeof _dashboardDatabasesDbIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/__dashboard': typeof _dashboardRouteWithChildren
   '/login': typeof LoginRoute
+  '/__dashboard/analytics': typeof _dashboardAnalyticsRoute
+  '/__dashboard/databases': typeof _dashboardDatabasesRouteWithChildren
+  '/__dashboard/logs': typeof _dashboardLogsRoute
+  '/__dashboard/settings': typeof _dashboardSettingsRoute
+  '/__dashboard/databases/$dbId': typeof _dashboardDatabasesDbIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/analytics'
+    | '/databases'
+    | '/logs'
+    | '/settings'
+    | '/databases/$dbId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to:
+    | '/'
+    | '/login'
+    | '/analytics'
+    | '/databases'
+    | '/logs'
+    | '/settings'
+    | '/databases/$dbId'
+  id:
+    | '__root__'
+    | '/'
+    | '/__dashboard'
+    | '/login'
+    | '/__dashboard/analytics'
+    | '/__dashboard/databases'
+    | '/__dashboard/logs'
+    | '/__dashboard/settings'
+    | '/__dashboard/databases/$dbId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  _dashboardRoute: typeof _dashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
 }
 export interface FileServerRoutesByFullPath {
@@ -89,12 +164,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/__dashboard': {
+      id: '/__dashboard'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof _dashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/__dashboard/settings': {
+      id: '/__dashboard/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof _dashboardSettingsRouteImport
+      parentRoute: typeof _dashboardRoute
+    }
+    '/__dashboard/logs': {
+      id: '/__dashboard/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof _dashboardLogsRouteImport
+      parentRoute: typeof _dashboardRoute
+    }
+    '/__dashboard/databases': {
+      id: '/__dashboard/databases'
+      path: '/databases'
+      fullPath: '/databases'
+      preLoaderRoute: typeof _dashboardDatabasesRouteImport
+      parentRoute: typeof _dashboardRoute
+    }
+    '/__dashboard/analytics': {
+      id: '/__dashboard/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof _dashboardAnalyticsRouteImport
+      parentRoute: typeof _dashboardRoute
+    }
+    '/__dashboard/databases/$dbId': {
+      id: '/__dashboard/databases/$dbId'
+      path: '/$dbId'
+      fullPath: '/databases/$dbId'
+      preLoaderRoute: typeof _dashboardDatabasesDbIdRouteImport
+      parentRoute: typeof _dashboardDatabasesRoute
     }
   }
 }
@@ -110,8 +227,38 @@ declare module '@tanstack/react-start/server' {
   }
 }
 
+interface _dashboardDatabasesRouteChildren {
+  _dashboardDatabasesDbIdRoute: typeof _dashboardDatabasesDbIdRoute
+}
+
+const _dashboardDatabasesRouteChildren: _dashboardDatabasesRouteChildren = {
+  _dashboardDatabasesDbIdRoute: _dashboardDatabasesDbIdRoute,
+}
+
+const _dashboardDatabasesRouteWithChildren =
+  _dashboardDatabasesRoute._addFileChildren(_dashboardDatabasesRouteChildren)
+
+interface _dashboardRouteChildren {
+  _dashboardAnalyticsRoute: typeof _dashboardAnalyticsRoute
+  _dashboardDatabasesRoute: typeof _dashboardDatabasesRouteWithChildren
+  _dashboardLogsRoute: typeof _dashboardLogsRoute
+  _dashboardSettingsRoute: typeof _dashboardSettingsRoute
+}
+
+const _dashboardRouteChildren: _dashboardRouteChildren = {
+  _dashboardAnalyticsRoute: _dashboardAnalyticsRoute,
+  _dashboardDatabasesRoute: _dashboardDatabasesRouteWithChildren,
+  _dashboardLogsRoute: _dashboardLogsRoute,
+  _dashboardSettingsRoute: _dashboardSettingsRoute,
+}
+
+const _dashboardRouteWithChildren = _dashboardRoute._addFileChildren(
+  _dashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  _dashboardRoute: _dashboardRouteWithChildren,
   LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport

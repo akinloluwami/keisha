@@ -27,6 +27,8 @@ export const Route = createFileRoute("/__dashboard")({
 function RouteComponent() {
   const location = useLocation();
 
+  const isActive = (to: string) => location.pathname.startsWith(to);
+
   return (
     <div>
       <div className="flex items-center justify-between bg-black">
@@ -39,7 +41,7 @@ function RouteComponent() {
                 to={link.to}
                 className="relative font-light text-sm rounded-md px-3 py-2 hover:bg-white/10 transition-colors z-10"
               >
-                {location.pathname === link.to && (
+                {isActive(link.to) && (
                   <motion.div
                     layoutId="highlight"
                     className="absolute inset-0 bg-white rounded-xl"
@@ -51,7 +53,7 @@ function RouteComponent() {
                   />
                 )}
                 <span
-                  className={`relative ${location.pathname === link.to ? "text-black font-medium" : "text-white"}`}
+                  className={`relative ${isActive(link.to) ? "text-black font-medium" : "text-white"}`}
                 >
                   {link.label}
                 </span>

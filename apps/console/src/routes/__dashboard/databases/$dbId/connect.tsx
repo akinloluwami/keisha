@@ -118,7 +118,6 @@ $value = $keisha->get('key');`,
         <title>{database.name} - Connect - Keisha</title>
       </Helmet>
 
-      {/* Connection Details */}
       <div className="bg-white border border-gray-200 rounded-2xl mb-6">
         <div className="p-6 space-y-4">
           <div>
@@ -143,7 +142,6 @@ $value = $keisha->get('key');`,
         </div>
       </div>
 
-      {/* Code Examples */}
       <div className="bg-white border border-gray-200 rounded-2xl">
         <div className="p-6 border-b border-gray-200">
           <h3 className="text-lg font-medium text-gray-900">Code Examples</h3>
@@ -152,7 +150,6 @@ $value = $keisha->get('key');`,
           </p>
         </div>
 
-        {/* Tabs */}
         <div className="border-b border-gray-200">
           <nav className="flex px-6 relative" aria-label="Tabs">
             <div
@@ -183,7 +180,6 @@ $value = $keisha->get('key');`,
           </nav>
         </div>
 
-        {/* Tab Content */}
         <div className="p-6">
           {codeExamples
             .filter((example) => example.language === activeTab)

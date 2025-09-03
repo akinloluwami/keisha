@@ -172,7 +172,7 @@ $value = $keisha->get('key');`,
                 <img
                   src={example.icon}
                   alt={`${example.language} logo`}
-                  className="w-5 h-5"
+                  className="size-5"
                 />
                 <span>{example.language}</span>
               </button>

@@ -4,13 +4,14 @@ import {
   varchar,
   timestamp,
   boolean,
+  text,
 } from "drizzle-orm/pg-core";
 import { user } from "./auth";
 import { databases } from "./databases";
 
 export const dbTokens = pgTable("db_tokens", {
   id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   token: varchar("token").notNull().unique(),

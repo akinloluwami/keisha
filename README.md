@@ -1,4 +1,6 @@
-This is the monorepo for the Keisha project.
+### Keisha
+
+Dead-simple persistent key-value database.
 
 ## Structure
 

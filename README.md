@@ -1,3 +1,5 @@
+> ⚠️ Still a work in progress.
+
 ### Keisha
 
 Dead-simple persistent key-value database.

@@ -5,12 +5,13 @@ import {
   timestamp,
   bigint,
   boolean,
+  text,
 } from "drizzle-orm/pg-core";
 import { user } from "./auth";
 
 export const databases = pgTable("databases", {
   id: uuid("id").defaultRandom().primaryKey(),
-  userId: uuid("user_id")
+  userId: text("user_id")
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   name: varchar("name").notNull(),

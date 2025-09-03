@@ -2,7 +2,7 @@
 
 Dead-simple persistent key-value database.
 
-## Structure
+#### Structure
 
 - `apps/cloud-api`: Keisha Cloud API (Hono)
 - `apps/console`: Keisha Console (React)

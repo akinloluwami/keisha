@@ -1,5 +1,4 @@
-import { BarChart } from "./charts/bar-chart";
-import { ChartCard } from "./chart-card";
+import { BarChart, ChartCard } from "../charts";
 import type { DatabaseAnalytics } from "~/store/database-store";
 
 interface OverviewChartsProps {

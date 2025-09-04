@@ -4,8 +4,7 @@ import {
   useRouterState,
 } from "@tanstack/react-router";
 import { useDatabaseStore } from "~/store/database-store";
-import { DatabaseNotFound } from "~/components/database/database-not-found";
-import { DatabaseLayout } from "~/components/database/database-layout";
+import { DatabaseNotFound, DatabaseLayout } from "~/components/database";
 
 export const Route = createFileRoute("/__dashboard/databases/$dbId")({
   component: RouteComponent,

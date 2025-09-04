@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { StatsGrid } from "./stats-grid";
+import { StatsGrid } from "../stats";
 import { OverviewCharts } from "./overview-charts";
 import type { Database } from "~/store/database-store";
 

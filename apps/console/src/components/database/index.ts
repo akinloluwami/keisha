@@ -6,3 +6,4 @@ export { DatabaseOverview } from "./database-overview";
 export { OverviewCharts } from "./overview-charts";
 export { DatabaseAnalytics } from "./analytics";
 export { DatabaseConnect } from "./connect";
+export { DatabaseExplorer } from "./explorer";

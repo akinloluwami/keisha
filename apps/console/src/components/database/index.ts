@@ -7,3 +7,5 @@ export { OverviewCharts } from "./overview-charts";
 export { DatabaseAnalytics } from "./analytics";
 export { DatabaseConnect } from "./connect";
 export { DatabaseExplorer } from "./explorer";
+export { DatabaseConfiguration } from "./configuration";
+export { DatabaseDanger } from "./danger";

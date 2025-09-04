@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Helmet } from "react-helmet";
 import { useDatabaseStore } from "~/store/database-store";
 import { useState } from "react";
-import { LineChart } from "~/components/line-chart";
+import { LineChart } from "~/components/charts/line-chart";
 
 export const Route = createFileRoute("/__dashboard/databases/$dbId/analytics")({
   component: RouteComponent,

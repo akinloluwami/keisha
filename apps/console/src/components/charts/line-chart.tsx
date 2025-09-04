@@ -42,24 +42,8 @@ export const LineChart: React.FC<ChartProps> = ({
   const isSingleLine = !isMultiLine && dataKey;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-6">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-600">{title}</span>
-          {showLegend && isMultiLine && (
-            <div className="flex space-x-4">
-              {lines.map((line) => (
-                <div key={line.dataKey} className="flex items-center space-x-1">
-                  <div
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: line.stroke }}
-                  />
-                  <span className="text-xs text-gray-500">{line.name}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+    <div className="">
+      <div className="space-y-4 mt-10">
         <ResponsiveContainer width="100%" height={height}>
           {type === "area" && isSingleLine ? (
             <AreaChart data={data}>

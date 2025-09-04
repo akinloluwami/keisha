@@ -11,7 +11,6 @@ export function AnalyticsCharts({ analytics }: AnalyticsChartsProps) {
       <ChartCard title="Operations per Hour">
         <LineChart
           data={analytics.operationsData}
-          title="Operations per Hour"
           type="area"
           dataKey="operations"
           stroke="#3B82F6"
@@ -21,7 +20,6 @@ export function AnalyticsCharts({ analytics }: AnalyticsChartsProps) {
       <ChartCard title="Bandwidth Usage">
         <LineChart
           data={analytics.bandwidthData}
-          title="Bandwidth Usage"
           type="line"
           lines={[
             { dataKey: "inbound", stroke: "#3B82F6", name: "Inbound" },
@@ -34,7 +32,6 @@ export function AnalyticsCharts({ analytics }: AnalyticsChartsProps) {
       <ChartCard title="Commands Comparison">
         <LineChart
           data={analytics.commandsData}
-          title="Commands Comparison"
           type="line"
           lines={[
             { dataKey: "GET", stroke: "#10b981", name: "GET" },
@@ -48,7 +45,6 @@ export function AnalyticsCharts({ analytics }: AnalyticsChartsProps) {
       <ChartCard title="Data Size">
         <LineChart
           data={analytics.dataSizeData}
-          title="Data Size"
           type="area"
           dataKey="size"
           stroke="#8B5CF6"

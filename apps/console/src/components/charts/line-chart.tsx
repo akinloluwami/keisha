@@ -13,7 +13,6 @@ import {
 
 interface ChartProps {
   data: any[];
-  title: string;
   type?: "line" | "area";
   lines?: Array<{
     dataKey: string;
@@ -29,7 +28,7 @@ interface ChartProps {
 
 export const LineChart: React.FC<ChartProps> = ({
   data,
-  title,
+
   type = "line",
   lines,
   dataKey,

@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
     "react-spring": "^10.0.1",
-    "reactflow": "^11.11.4",
+    "react-xarrows": "^2.0.2",
     "recharts": "^3.1.2",
     "tailwind-merge": "^2.6.0",
     "zod": "^3.24.2",

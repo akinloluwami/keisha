@@ -2,85 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Helmet } from "react-helmet";
 import { useSpring, animated } from "@react-spring/web";
 import { useState, useEffect, useRef } from "react";
+import Xarrow from "react-xarrows";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
-
-function InteractiveConnection({
-  id,
-  fromId,
-  toId,
-  color,
-  isActive,
-}: {
-  id: string;
-  fromId: string;
-  toId: string;
-  color: string;
-  isActive: boolean;
-}) {
-  const [path, setPath] = useState("");
-
-  useEffect(() => {
-    const updatePath = () => {
-      const fromElement = document.getElementById(fromId);
-      const toElement = document.getElementById(toId);
-
-      if (fromElement && toElement) {
-        const fromRect = fromElement.getBoundingClientRect();
-        const toRect = toElement.getBoundingClientRect();
-
-        const fromX = fromRect.left + fromRect.width / 2;
-        const fromY = fromRect.bottom;
-        const toX = toRect.left + toRect.width / 2;
-        const toY = toRect.top;
-
-        const controlY1 = fromY + (toY - fromY) * 0.3;
-        const controlY2 = fromY + (toY - fromY) * 0.7;
-
-        const pathD = `M ${fromX} ${fromY} C ${fromX} ${controlY1}, ${toX} ${controlY2}, ${toX} ${toY}`;
-
-        setPath(pathD);
-      }
-    };
-
-    const timer = setTimeout(updatePath, 200);
-
-    updatePath();
-    window.addEventListener("resize", updatePath);
-    window.addEventListener("scroll", updatePath);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("resize", updatePath);
-      window.removeEventListener("scroll", updatePath);
-    };
-  }, [fromId, toId]);
-
-  return (
-    <svg
-      className="fixed inset-0 w-full h-full pointer-events-none z-10"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
-      <path
-        d={path}
-        stroke={color}
-        strokeWidth={isActive ? 4 : 2}
-        strokeDasharray="8,4"
-        fill="none"
-        opacity={isActive ? 1 : 0.7}
-        className={`transition-all duration-300 ${isActive ? "animate-pulse" : ""}`}
-      />
-    </svg>
-  );
-}
 
 function Home() {
   const [docsHovered, setDocsHovered] = useState(false);
@@ -487,20 +413,28 @@ function Home() {
         </div>
       </div>
 
-      <InteractiveConnection
-        id="docs-keisha-connection"
-        fromId="docs-button"
-        toId="keisha-card"
+      <Xarrow
+        start="docs-button"
+        end="keisha-card"
         color="#8b5cf6"
-        isActive={docsHovered || keishaHovered}
+        strokeWidth={2}
+        dashness={{ strokeLen: 8, nonStrokeLen: 4, animation: 2 }}
+        curveness={0.8}
+        showHead={false}
+        startAnchor="bottom"
+        endAnchor="top"
       />
 
-      <InteractiveConnection
-        id="demo-cloud-connection"
-        fromId="demo-button"
-        toId="cloud-card"
+      <Xarrow
+        start="demo-button"
+        end="cloud-card"
         color="#6b7280"
-        isActive={demoHovered || cloudHovered}
+        strokeWidth={2}
+        dashness={{ strokeLen: 8, nonStrokeLen: 4, animation: 2 }}
+        curveness={0.8}
+        showHead={false}
+        startAnchor="bottom"
+        endAnchor="top"
       />
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

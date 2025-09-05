@@ -1,11 +1,15 @@
 {
-  "name": "keisha-monorepo",
+  "name": "keisha",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*",
+    "packages/shared/*",
     "packages/sdk/ts"
   ],
+  "scripts": {
+    "build": "npm run build --workspace=@keishadb/drizzle && npm run build --workspace=keisha"
+  },
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "jest": "^30.1.2",

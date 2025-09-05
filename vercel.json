@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npm run build --workspace=@keishadb/drizzle && npm run build --workspace=keisha",
+  "outputDirectory": "apps/console/.output/public"
+}

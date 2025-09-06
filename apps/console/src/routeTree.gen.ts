@@ -11,6 +11,7 @@
 import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as _dashboardRouteImport } from './routes/__dashboard'
 import { Route as IndexRouteImport } from './routes/index'
@@ -38,6 +39,11 @@ import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/
 
 const rootServerRouteImport = createServerRootRoute()
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -170,6 +176,7 @@ const ApiAuthSplatServerRoute = ApiAuthSplatServerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/analytics': typeof _dashboardAnalyticsRoute
   '/demo': typeof _dashboardDemoRouteWithChildren
   '/logs': typeof _dashboardLogsRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/analytics': typeof _dashboardAnalyticsRoute
   '/logs': typeof _dashboardLogsRoute
   '/settings': typeof _dashboardSettingsRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/__dashboard': typeof _dashboardRouteWithChildren
   '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
   '/__dashboard/__authenticated': typeof _dashboard_authenticatedRouteWithChildren
   '/__dashboard/analytics': typeof _dashboardAnalyticsRoute
   '/__dashboard/demo': typeof _dashboardDemoRouteWithChildren
@@ -243,6 +252,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
+    | '/signup'
     | '/analytics'
     | '/demo'
     | '/logs'
@@ -266,6 +276,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/signup'
     | '/analytics'
     | '/logs'
     | '/settings'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/'
     | '/__dashboard'
     | '/login'
+    | '/signup'
     | '/__dashboard/__authenticated'
     | '/__dashboard/analytics'
     | '/__dashboard/demo'
@@ -315,6 +327,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   _dashboardRoute: typeof _dashboardRouteWithChildren
   LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
 }
 export interface FileServerRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatServerRoute
@@ -340,6 +353,13 @@ export interface RootServerRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -610,6 +630,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   _dashboardRoute: _dashboardRouteWithChildren,
   LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -2,23 +2,23 @@ import { createFileRoute, Navigate, Link } from "@tanstack/react-router";
 import { useSession } from "../auth-client";
 import { socialAuth } from "../utils/social-auth";
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
       {
-        title: "Sign In - Keisha",
+        title: "Sign Up - Keisha",
       },
       {
         name: "description",
         content:
-          "Sign in to your Keisha account to manage your key-value databases.",
+          "Create your Keisha account to start managing key-value databases today.",
       },
     ],
   }),
-  component: LoginPage,
+  component: SignupPage,
 });
 
-function LoginPage() {
+function SignupPage() {
   const { data: session } = useSession();
 
   if (session) {
@@ -97,9 +97,11 @@ function LoginPage() {
                 className="w-20 h-20 object-contain"
               />
             </div>
-            <h1 className="text-3xl font-normal text-gray-900">Welcome back</h1>
+            <h1 className="text-3xl font-normal text-gray-900">
+              Create an account
+            </h1>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Sign in to manage your Keisha databases
+              Welcome to Keisha. Create an account to get started.
             </p>
           </div>
 
@@ -121,7 +123,7 @@ function LoginPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-                Continue with GitHub
+                Sign up with GitHub
               </button>
 
               <button
@@ -150,7 +152,7 @@ function LoginPage() {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Continue with Google
+                Sign up with Google
               </button>
             </div>
 
@@ -169,12 +171,12 @@ function LoginPage() {
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                New to Keisha?{" "}
+                Already have an account?{" "}
                 <Link
-                  to="/signup"
+                  to="/login"
                   className="text-accent hover:text-accent/80 font-medium"
                 >
-                  Create an account
+                  Sign in
                 </Link>
               </p>
             </div>

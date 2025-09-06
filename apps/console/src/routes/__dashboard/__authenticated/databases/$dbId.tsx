@@ -6,12 +6,16 @@ import {
 import { useDatabaseStore } from "~/store/database-store";
 import { DatabaseNotFound, DatabaseLayout } from "~/components/database";
 
-export const Route = createFileRoute("/__dashboard/databases/$dbId")({
+export const Route = createFileRoute(
+  "/__dashboard/__authenticated/databases/$dbId"
+)({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { dbId } = useParams({ from: "/__dashboard/databases/$dbId" });
+  const { dbId } = useParams({
+    from: "/__dashboard/__authenticated/databases/$dbId",
+  });
   const { databases } = useDatabaseStore();
   const routerState = useRouterState();
 

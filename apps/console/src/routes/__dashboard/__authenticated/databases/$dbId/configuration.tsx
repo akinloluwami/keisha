@@ -4,7 +4,7 @@ import { useDatabaseStore } from "~/store/database-store";
 import { DatabaseConfiguration } from "~/components/database";
 
 export const Route = createFileRoute(
-  "/__dashboard/databases/$dbId/configuration"
+  "/__dashboard/__authenticated/databases/$dbId/configuration"
 )({
   component: RouteComponent,
 });

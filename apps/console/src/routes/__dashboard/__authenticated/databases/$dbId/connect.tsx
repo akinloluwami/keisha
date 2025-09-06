@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useDatabaseStore } from "~/store/database-store";
-import { DatabaseAnalytics } from "~/components/database";
+import { DatabaseConnect } from "~/components/database";
 
-export const Route = createFileRoute("/__dashboard/databases/$dbId/analytics")({
+export const Route = createFileRoute("/__dashboard/__authenticated/databases/$dbId/connect")({
   component: RouteComponent,
 });
 
@@ -16,5 +16,5 @@ function RouteComponent() {
     return <div>Database not found</div>;
   }
 
-  return <DatabaseAnalytics database={database} />;
+  return <DatabaseConnect database={database} />;
 }

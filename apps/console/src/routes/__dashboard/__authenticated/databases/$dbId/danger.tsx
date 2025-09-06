@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { useDatabaseStore } from "~/store/database-store";
 import { DatabaseDanger } from "~/components/database";
 
-export const Route = createFileRoute("/__dashboard/databases/$dbId/danger")({
+export const Route = createFileRoute("/__dashboard/__authenticated/databases/$dbId/danger")({
   component: RouteComponent,
 });
 

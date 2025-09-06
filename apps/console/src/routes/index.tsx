@@ -128,7 +128,7 @@ function Home() {
             </a>
             <div className="group/demo">
               <Link
-                to="/login"
+                to="/demo"
                 id="demo-button"
                 className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 rounded-full hover:border-accent hover:text-accent transition-all duration-300 relative z-10 shadow-lg hover:shadow-gray-500/30 group-hover/demo:shadow-gray-500/30"
               >

@@ -16,8 +16,16 @@ import { Route as _dashboardRouteImport } from './routes/__dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as _dashboardSettingsRouteImport } from './routes/__dashboard/settings'
 import { Route as _dashboardLogsRouteImport } from './routes/__dashboard/logs'
+import { Route as _dashboardDemoRouteImport } from './routes/__dashboard/demo'
 import { Route as _dashboardAnalyticsRouteImport } from './routes/__dashboard/analytics'
+import { Route as _dashboardDemoIndexRouteImport } from './routes/__dashboard/demo/index'
 import { Route as _dashboardDatabasesIndexRouteImport } from './routes/__dashboard/databases.index'
+import { Route as _dashboardDemoOverviewRouteImport } from './routes/__dashboard/demo/overview'
+import { Route as _dashboardDemoExplorerRouteImport } from './routes/__dashboard/demo/explorer'
+import { Route as _dashboardDemoDangerRouteImport } from './routes/__dashboard/demo/danger'
+import { Route as _dashboardDemoConnectRouteImport } from './routes/__dashboard/demo/connect'
+import { Route as _dashboardDemoConfigurationRouteImport } from './routes/__dashboard/demo/configuration'
+import { Route as _dashboardDemoAnalyticsRouteImport } from './routes/__dashboard/demo/analytics'
 import { Route as _dashboardDatabasesDbIdRouteImport } from './routes/__dashboard/databases/$dbId'
 import { Route as _dashboardDatabasesDbIdOverviewRouteImport } from './routes/__dashboard/databases/$dbId/overview'
 import { Route as _dashboardDatabasesDbIdExplorerRouteImport } from './routes/__dashboard/databases/$dbId/explorer'
@@ -53,10 +61,20 @@ const _dashboardLogsRoute = _dashboardLogsRouteImport.update({
   path: '/logs',
   getParentRoute: () => _dashboardRoute,
 } as any)
+const _dashboardDemoRoute = _dashboardDemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => _dashboardRoute,
+} as any)
 const _dashboardAnalyticsRoute = _dashboardAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
   getParentRoute: () => _dashboardRoute,
+} as any)
+const _dashboardDemoIndexRoute = _dashboardDemoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => _dashboardDemoRoute,
 } as any)
 const _dashboardDatabasesIndexRoute =
   _dashboardDatabasesIndexRouteImport.update({
@@ -64,6 +82,37 @@ const _dashboardDatabasesIndexRoute =
     path: '/databases/',
     getParentRoute: () => _dashboardRoute,
   } as any)
+const _dashboardDemoOverviewRoute = _dashboardDemoOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => _dashboardDemoRoute,
+} as any)
+const _dashboardDemoExplorerRoute = _dashboardDemoExplorerRouteImport.update({
+  id: '/explorer',
+  path: '/explorer',
+  getParentRoute: () => _dashboardDemoRoute,
+} as any)
+const _dashboardDemoDangerRoute = _dashboardDemoDangerRouteImport.update({
+  id: '/danger',
+  path: '/danger',
+  getParentRoute: () => _dashboardDemoRoute,
+} as any)
+const _dashboardDemoConnectRoute = _dashboardDemoConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
+  getParentRoute: () => _dashboardDemoRoute,
+} as any)
+const _dashboardDemoConfigurationRoute =
+  _dashboardDemoConfigurationRouteImport.update({
+    id: '/configuration',
+    path: '/configuration',
+    getParentRoute: () => _dashboardDemoRoute,
+  } as any)
+const _dashboardDemoAnalyticsRoute = _dashboardDemoAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => _dashboardDemoRoute,
+} as any)
 const _dashboardDatabasesDbIdRoute = _dashboardDatabasesDbIdRouteImport.update({
   id: '/databases/$dbId',
   path: '/databases/$dbId',
@@ -115,10 +164,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/analytics': typeof _dashboardAnalyticsRoute
+  '/demo': typeof _dashboardDemoRouteWithChildren
   '/logs': typeof _dashboardLogsRoute
   '/settings': typeof _dashboardSettingsRoute
   '/databases/$dbId': typeof _dashboardDatabasesDbIdRouteWithChildren
+  '/demo/analytics': typeof _dashboardDemoAnalyticsRoute
+  '/demo/configuration': typeof _dashboardDemoConfigurationRoute
+  '/demo/connect': typeof _dashboardDemoConnectRoute
+  '/demo/danger': typeof _dashboardDemoDangerRoute
+  '/demo/explorer': typeof _dashboardDemoExplorerRoute
+  '/demo/overview': typeof _dashboardDemoOverviewRoute
   '/databases': typeof _dashboardDatabasesIndexRoute
+  '/demo/': typeof _dashboardDemoIndexRoute
   '/databases/$dbId/analytics': typeof _dashboardDatabasesDbIdAnalyticsRoute
   '/databases/$dbId/configuration': typeof _dashboardDatabasesDbIdConfigurationRoute
   '/databases/$dbId/connect': typeof _dashboardDatabasesDbIdConnectRoute
@@ -133,7 +190,14 @@ export interface FileRoutesByTo {
   '/logs': typeof _dashboardLogsRoute
   '/settings': typeof _dashboardSettingsRoute
   '/databases/$dbId': typeof _dashboardDatabasesDbIdRouteWithChildren
+  '/demo/analytics': typeof _dashboardDemoAnalyticsRoute
+  '/demo/configuration': typeof _dashboardDemoConfigurationRoute
+  '/demo/connect': typeof _dashboardDemoConnectRoute
+  '/demo/danger': typeof _dashboardDemoDangerRoute
+  '/demo/explorer': typeof _dashboardDemoExplorerRoute
+  '/demo/overview': typeof _dashboardDemoOverviewRoute
   '/databases': typeof _dashboardDatabasesIndexRoute
+  '/demo': typeof _dashboardDemoIndexRoute
   '/databases/$dbId/analytics': typeof _dashboardDatabasesDbIdAnalyticsRoute
   '/databases/$dbId/configuration': typeof _dashboardDatabasesDbIdConfigurationRoute
   '/databases/$dbId/connect': typeof _dashboardDatabasesDbIdConnectRoute
@@ -147,10 +211,18 @@ export interface FileRoutesById {
   '/__dashboard': typeof _dashboardRouteWithChildren
   '/login': typeof LoginRoute
   '/__dashboard/analytics': typeof _dashboardAnalyticsRoute
+  '/__dashboard/demo': typeof _dashboardDemoRouteWithChildren
   '/__dashboard/logs': typeof _dashboardLogsRoute
   '/__dashboard/settings': typeof _dashboardSettingsRoute
   '/__dashboard/databases/$dbId': typeof _dashboardDatabasesDbIdRouteWithChildren
+  '/__dashboard/demo/analytics': typeof _dashboardDemoAnalyticsRoute
+  '/__dashboard/demo/configuration': typeof _dashboardDemoConfigurationRoute
+  '/__dashboard/demo/connect': typeof _dashboardDemoConnectRoute
+  '/__dashboard/demo/danger': typeof _dashboardDemoDangerRoute
+  '/__dashboard/demo/explorer': typeof _dashboardDemoExplorerRoute
+  '/__dashboard/demo/overview': typeof _dashboardDemoOverviewRoute
   '/__dashboard/databases/': typeof _dashboardDatabasesIndexRoute
+  '/__dashboard/demo/': typeof _dashboardDemoIndexRoute
   '/__dashboard/databases/$dbId/analytics': typeof _dashboardDatabasesDbIdAnalyticsRoute
   '/__dashboard/databases/$dbId/configuration': typeof _dashboardDatabasesDbIdConfigurationRoute
   '/__dashboard/databases/$dbId/connect': typeof _dashboardDatabasesDbIdConnectRoute
@@ -164,10 +236,18 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/analytics'
+    | '/demo'
     | '/logs'
     | '/settings'
     | '/databases/$dbId'
+    | '/demo/analytics'
+    | '/demo/configuration'
+    | '/demo/connect'
+    | '/demo/danger'
+    | '/demo/explorer'
+    | '/demo/overview'
     | '/databases'
+    | '/demo/'
     | '/databases/$dbId/analytics'
     | '/databases/$dbId/configuration'
     | '/databases/$dbId/connect'
@@ -182,7 +262,14 @@ export interface FileRouteTypes {
     | '/logs'
     | '/settings'
     | '/databases/$dbId'
+    | '/demo/analytics'
+    | '/demo/configuration'
+    | '/demo/connect'
+    | '/demo/danger'
+    | '/demo/explorer'
+    | '/demo/overview'
     | '/databases'
+    | '/demo'
     | '/databases/$dbId/analytics'
     | '/databases/$dbId/configuration'
     | '/databases/$dbId/connect'
@@ -195,10 +282,18 @@ export interface FileRouteTypes {
     | '/__dashboard'
     | '/login'
     | '/__dashboard/analytics'
+    | '/__dashboard/demo'
     | '/__dashboard/logs'
     | '/__dashboard/settings'
     | '/__dashboard/databases/$dbId'
+    | '/__dashboard/demo/analytics'
+    | '/__dashboard/demo/configuration'
+    | '/__dashboard/demo/connect'
+    | '/__dashboard/demo/danger'
+    | '/__dashboard/demo/explorer'
+    | '/__dashboard/demo/overview'
     | '/__dashboard/databases/'
+    | '/__dashboard/demo/'
     | '/__dashboard/databases/$dbId/analytics'
     | '/__dashboard/databases/$dbId/configuration'
     | '/__dashboard/databases/$dbId/connect'
@@ -271,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _dashboardLogsRouteImport
       parentRoute: typeof _dashboardRoute
     }
+    '/__dashboard/demo': {
+      id: '/__dashboard/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof _dashboardDemoRouteImport
+      parentRoute: typeof _dashboardRoute
+    }
     '/__dashboard/analytics': {
       id: '/__dashboard/analytics'
       path: '/analytics'
@@ -278,12 +380,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _dashboardAnalyticsRouteImport
       parentRoute: typeof _dashboardRoute
     }
+    '/__dashboard/demo/': {
+      id: '/__dashboard/demo/'
+      path: '/'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof _dashboardDemoIndexRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
     '/__dashboard/databases/': {
       id: '/__dashboard/databases/'
       path: '/databases'
       fullPath: '/databases'
       preLoaderRoute: typeof _dashboardDatabasesIndexRouteImport
       parentRoute: typeof _dashboardRoute
+    }
+    '/__dashboard/demo/overview': {
+      id: '/__dashboard/demo/overview'
+      path: '/overview'
+      fullPath: '/demo/overview'
+      preLoaderRoute: typeof _dashboardDemoOverviewRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
+    '/__dashboard/demo/explorer': {
+      id: '/__dashboard/demo/explorer'
+      path: '/explorer'
+      fullPath: '/demo/explorer'
+      preLoaderRoute: typeof _dashboardDemoExplorerRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
+    '/__dashboard/demo/danger': {
+      id: '/__dashboard/demo/danger'
+      path: '/danger'
+      fullPath: '/demo/danger'
+      preLoaderRoute: typeof _dashboardDemoDangerRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
+    '/__dashboard/demo/connect': {
+      id: '/__dashboard/demo/connect'
+      path: '/connect'
+      fullPath: '/demo/connect'
+      preLoaderRoute: typeof _dashboardDemoConnectRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
+    '/__dashboard/demo/configuration': {
+      id: '/__dashboard/demo/configuration'
+      path: '/configuration'
+      fullPath: '/demo/configuration'
+      preLoaderRoute: typeof _dashboardDemoConfigurationRouteImport
+      parentRoute: typeof _dashboardDemoRoute
+    }
+    '/__dashboard/demo/analytics': {
+      id: '/__dashboard/demo/analytics'
+      path: '/analytics'
+      fullPath: '/demo/analytics'
+      preLoaderRoute: typeof _dashboardDemoAnalyticsRouteImport
+      parentRoute: typeof _dashboardDemoRoute
     }
     '/__dashboard/databases/$dbId': {
       id: '/__dashboard/databases/$dbId'
@@ -348,6 +499,30 @@ declare module '@tanstack/react-start/server' {
   }
 }
 
+interface _dashboardDemoRouteChildren {
+  _dashboardDemoAnalyticsRoute: typeof _dashboardDemoAnalyticsRoute
+  _dashboardDemoConfigurationRoute: typeof _dashboardDemoConfigurationRoute
+  _dashboardDemoConnectRoute: typeof _dashboardDemoConnectRoute
+  _dashboardDemoDangerRoute: typeof _dashboardDemoDangerRoute
+  _dashboardDemoExplorerRoute: typeof _dashboardDemoExplorerRoute
+  _dashboardDemoOverviewRoute: typeof _dashboardDemoOverviewRoute
+  _dashboardDemoIndexRoute: typeof _dashboardDemoIndexRoute
+}
+
+const _dashboardDemoRouteChildren: _dashboardDemoRouteChildren = {
+  _dashboardDemoAnalyticsRoute: _dashboardDemoAnalyticsRoute,
+  _dashboardDemoConfigurationRoute: _dashboardDemoConfigurationRoute,
+  _dashboardDemoConnectRoute: _dashboardDemoConnectRoute,
+  _dashboardDemoDangerRoute: _dashboardDemoDangerRoute,
+  _dashboardDemoExplorerRoute: _dashboardDemoExplorerRoute,
+  _dashboardDemoOverviewRoute: _dashboardDemoOverviewRoute,
+  _dashboardDemoIndexRoute: _dashboardDemoIndexRoute,
+}
+
+const _dashboardDemoRouteWithChildren = _dashboardDemoRoute._addFileChildren(
+  _dashboardDemoRouteChildren,
+)
+
 interface _dashboardDatabasesDbIdRouteChildren {
   _dashboardDatabasesDbIdAnalyticsRoute: typeof _dashboardDatabasesDbIdAnalyticsRoute
   _dashboardDatabasesDbIdConfigurationRoute: typeof _dashboardDatabasesDbIdConfigurationRoute
@@ -376,6 +551,7 @@ const _dashboardDatabasesDbIdRouteWithChildren =
 
 interface _dashboardRouteChildren {
   _dashboardAnalyticsRoute: typeof _dashboardAnalyticsRoute
+  _dashboardDemoRoute: typeof _dashboardDemoRouteWithChildren
   _dashboardLogsRoute: typeof _dashboardLogsRoute
   _dashboardSettingsRoute: typeof _dashboardSettingsRoute
   _dashboardDatabasesDbIdRoute: typeof _dashboardDatabasesDbIdRouteWithChildren
@@ -384,6 +560,7 @@ interface _dashboardRouteChildren {
 
 const _dashboardRouteChildren: _dashboardRouteChildren = {
   _dashboardAnalyticsRoute: _dashboardAnalyticsRoute,
+  _dashboardDemoRoute: _dashboardDemoRouteWithChildren,
   _dashboardLogsRoute: _dashboardLogsRoute,
   _dashboardSettingsRoute: _dashboardSettingsRoute,
   _dashboardDatabasesDbIdRoute: _dashboardDatabasesDbIdRouteWithChildren,

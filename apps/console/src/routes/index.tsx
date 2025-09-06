@@ -1,7 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Helmet } from "react-helmet";
-import { useSpring, animated } from "@react-spring/web";
-import { useState, useEffect, useRef } from "react";
 import Xarrow from "react-xarrows";
 
 export const Route = createFileRoute("/")({
@@ -9,43 +7,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const [docsHovered, setDocsHovered] = useState(false);
-  const [demoHovered, setDemoHovered] = useState(false);
-  const [keishaHovered, setKeishaHovered] = useState(false);
-  const [cloudHovered, setCloudHovered] = useState(false);
-
-  const docsButtonSpring = useSpring({
-    boxShadow:
-      docsHovered || keishaHovered
-        ? "0 10px 25px rgba(139, 92, 246, 0.3)"
-        : "0 4px 15px rgba(139, 92, 246, 0.1)",
-    config: { tension: 300, friction: 20 },
-  });
-
-  const demoButtonSpring = useSpring({
-    boxShadow:
-      demoHovered || cloudHovered
-        ? "0 10px 25px rgba(107, 114, 128, 0.3)"
-        : "0 4px 15px rgba(107, 114, 128, 0.1)",
-    config: { tension: 300, friction: 20 },
-  });
-
-  const keishaCardSpring = useSpring({
-    boxShadow:
-      docsHovered || keishaHovered
-        ? "0 20px 40px rgba(139, 92, 246, 0.15)"
-        : "0 8px 25px rgba(0, 0, 0, 0.1)",
-    config: { tension: 280, friction: 25 },
-  });
-
-  const cloudCardSpring = useSpring({
-    boxShadow:
-      demoHovered || cloudHovered
-        ? "0 20px 40px rgba(107, 114, 128, 0.15)"
-        : "0 8px 25px rgba(0, 0, 0, 0.1)",
-    config: { tension: 280, friction: 25 },
-  });
-
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       <Helmet>
@@ -157,26 +118,19 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 relative">
-            <animated.a
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 relative group">
+            <a
               href="#"
               id="docs-button"
-              style={docsButtonSpring}
-              onMouseEnter={() => setDocsHovered(true)}
-              onMouseLeave={() => setDocsHovered(false)}
-              className="inline-block px-8 py-4 bg-accent text-white rounded-full hover:bg-accent/90 transition-colors relative z-10"
+              className="inline-block px-8 py-4 bg-accent text-white rounded-full hover:bg-accent/90 transition-all duration-300 relative z-10 shadow-lg hover:shadow-violet-500/30 group-hover:shadow-violet-500/30"
             >
               Documentation
-            </animated.a>
-            <animated.div
-              style={demoButtonSpring}
-              onMouseEnter={() => setDemoHovered(true)}
-              onMouseLeave={() => setDemoHovered(false)}
-            >
+            </a>
+            <div className="group/demo">
               <Link
                 to="/login"
                 id="demo-button"
-                className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 rounded-full hover:border-accent hover:text-accent transition-colors relative z-10"
+                className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 rounded-full hover:border-accent hover:text-accent transition-all duration-300 relative z-10 shadow-lg hover:shadow-gray-500/30 group-hover/demo:shadow-gray-500/30"
               >
                 <svg
                   className="mr-2 w-4 h-4"
@@ -193,20 +147,17 @@ function Home() {
                 </svg>
                 Interactive Demo
               </Link>
-            </animated.div>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="relative z-10 px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
-            <animated.div
-              className="bg-white rounded-3xl p-8 border border-gray-200 relative overflow-hidden hover:border-accent/30 transition-colors"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative group">
+            <div
+              className="bg-white rounded-3xl p-8 border border-gray-200 relative overflow-hidden hover:border-accent/30 transition-all duration-300 shadow-lg hover:shadow-violet-500/15 group-hover:shadow-violet-500/15"
               id="keisha-card"
-              style={keishaCardSpring}
-              onMouseEnter={() => setKeishaHovered(true)}
-              onMouseLeave={() => setKeishaHovered(false)}
             >
               <div className="inline-flex items-center px-3 py-1 bg-accent/30 text-accent text-sm font-medium rounded-full mb-6">
                 OPEN SOURCE
@@ -300,14 +251,11 @@ function Home() {
               </div>
 
               <div className="absolute inset-0 rounded-3xl border-2 border-accent/10 pointer-events-none"></div>
-            </animated.div>
+            </div>
 
-            <animated.div
-              className="bg-white rounded-3xl p-8 border border-gray-200 relative overflow-hidden hover:border-gray-300 transition-colors"
+            <div
+              className="bg-white rounded-3xl p-8 border border-gray-200 relative overflow-hidden hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-gray-500/15 group-hover:shadow-gray-500/15"
               id="cloud-card"
-              style={cloudCardSpring}
-              onMouseEnter={() => setCloudHovered(true)}
-              onMouseLeave={() => setCloudHovered(false)}
             >
               <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-600 text-sm font-medium rounded-full mb-6">
                 PRODUCTION READY
@@ -408,7 +356,7 @@ function Home() {
               </div>
 
               <div className="absolute inset-0 rounded-3xl border-2 border-gray-200/50 pointer-events-none"></div>
-            </animated.div>
+            </div>
           </div>
         </div>
       </div>
